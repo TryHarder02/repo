@@ -26,11 +26,22 @@ public class ManagementCompany {
 	this.property= new Property[MAX_PROPERTY];
 	
 	}
-	public ManagementCompany(String name, String taxId, double mgmtFeePercentage) {
-	    this.name = name;
-	    this.taxId = taxId;
-	    this.mgmtFeePercentage = mgmtFeePercentage;
-	}
+	
+	
+
+public ManagementCompany(String name, String taxId, double mgmtFeePercentage) {
+
+    this.name = name;
+
+    this.taxId = taxId;
+
+    this.mgmtFeePercentage = mgmtFeePercentage;
+
+    this.property = new Property[MAX_PROPERTY];
+    this.plot = new Plot(0, 0, MGMT_WIDTH, MGMT_DEPH);
+
+}
+
 	//getters 
 	public String getManagementCompanyName() {
 		return name;
@@ -163,15 +174,24 @@ public void setMGMT_WIDTH	(int MGMT_WIDTH) {
 					}
 				}
 	
-				public String toString() {
-					String emptyString="";
-					for(int i=0; i<numberOfProperties; i++) {
-						emptyString+=property[i].toString();
-						
-					}
-					return emptyString;
-				}
-	
+
+public String toString() {
+    String result = "List of the properties for " + name
+            + ", taxID: " + taxId + "\n"
+            + "______________________________________________________\n";
+
+    for (int i = 0; i < numberOfProperties; i++) {
+        result += property[i].toString() + "\n";
+    }
+
+    result += "______________________________________________________\n"
+            + "\n"
+            + " total management Fee: "
+            + String.format("%.2f", getTotalRent() * mgmtFeePercentage / 100);
+
+    return result;
+}
+
 	
 	
 	
